@@ -50,7 +50,23 @@ public class MainActivity extends AppCompatActivity {
         //有密码和账号 点击登录之后跳转到第二个界面并把数据带过去
         //先创建一个Intent对象，然后通过startActivity进行跳转
         //通过字节码文件进行跳转
-        Intent intent = new Intent(this,SecondActivity.class);
+        //显式意图跳转
+        /*Intent intent = new Intent(this,SecondActivity.class);
+        intent.putExtra("account",accountText);
+        intent.putExtra("password",passwordText);
+        startActivity(intent);*/
+        //隐式意图
+        /**
+         * 步骤  创建Intent对象
+         *       在Manifest中 配置意图过滤器
+         */
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.LOGININFO");
+//        intent.addCategory("android.intent.category.DEFAULT");
+        //CATEGORY_DEFAULT  为常量 推荐第二种
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.putExtra("account",accountText);
+        intent.putExtra("password",passwordText);
         startActivity(intent);
     }
 
